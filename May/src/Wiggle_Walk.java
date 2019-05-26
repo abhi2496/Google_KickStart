@@ -22,48 +22,43 @@ public class Wiggle_Walk {
 					visited[j][k] = 0;
 				}
 			}
-			
+
 			visited[--a[3]][--a[4]] = 1;
-			int x=a[3];
-			int y=a[4];
-			String instrucline = scan.nextLine();			
+			int x = a[3];
+			int y = a[4];
+			String instrucline = scan.nextLine();
 			for (int k = 0; k < a[0]; k++) {
 
+				if (instrucline.charAt(k) == 'E') {
+					while (visited[x][y + 1] != 0) {
+						y++;
+					}
+					visited[x][++y] = 1;
+				}
 
-//				for (int k = 0; k < instrucline.length(); k++) {
-					if (instrucline.charAt(k)=='E') {
-						while (visited[x][y+1]!=0) {
-							y++;
-						}
-						visited[x][++y]=1;
+				if (instrucline.charAt(k) == 'W') {
+					while (visited[x][y - 1] != 0) {
+						y--;
 					}
-					
-					if (instrucline.charAt(k)=='W') {
-						while (visited[x][y-1]!=0) {
-							y--;
-						}
-						visited[x][--y]=1;
+					visited[x][--y] = 1;
+				}
+
+				if (instrucline.charAt(k) == 'N') {
+					while (visited[x - 1][y] != 0) {
+						x--;
 					}
-					
-					if (instrucline.charAt(k)=='N') {
-						while (visited[x-1][y]!=0) {
-							x--;
-						}
-						visited[--x][y]=1;
+					visited[--x][y] = 1;
+				}
+
+				if (instrucline.charAt(k) == 'S') {
+					while (visited[x + 1][y] != 0) {
+						x++;
 					}
-					
-					if (instrucline.charAt(k)=='S') {
-						while (visited[x+1][y]!=0) {
-							x++;
-						}
-						visited[++x][y]=1;
-					}
-//				}
+					visited[++x][y] = 1;
+				}
 			}
-			System.out.println("Case #"+ ++i +": "+ ++x+" "+ ++y);
+			System.out.println("Case #" + ++i + ": " + ++x + " " + ++y);
 		}
-	
 		scan.close();
 	}
-
 }
